@@ -145,7 +145,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { err });
 });
 
-// Start Express server
-app.listen(3000, () => {
-  console.log("🚀 Server is running on http://localhost:3000");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Serving on port ${port}`);
 });
