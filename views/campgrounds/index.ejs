@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate')%>
+<div class="d-flex justify-content-center">
+  <div id="map" style="width: 100%; height: 400px; max-width: 700px"></div>
+</div>
+<div class="container mt-3 mt-lg-5">
+  <h1>All Campgrounds</h1>
+  <div class="mt-3 mb-5">
+    <a href="/campgrounds/new">Add Campground</a>
+  </div>
+  <% for (let campground of campgrounds) {%>
+  <div class="card mb-3 mb-md-4 mx-md-5">
+    <div class="row">
+      <div class="col-md-4">
+        <%if(campground.images.length) {%>
+        <img
+          class="img-fluid"
+          alt=""
+          src="<%=campground.images[0].url%>"
+          style="height: 100%; object-fit: cover"
+        />
+        <% }else {%>
+        <img
+          class="img-fluid"
+          alt=""
+          src="https://res.cloudinary.com/dvrtgys37/image/upload/v1764614323/Screenshot_2025-11-25_at_1.35.32_PM_n1kejm.png"
+        />
+        <% } %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= campground.title %></h5>
+          <p class="card-text"><%= campground.description %></p>
+          <p class="card-text">
+            <small class="text-muted"><%= campground.location %></small>
+          </p>
+          <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>"
+            >View <%= campground.title %></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<%- "<script>" %>
+const maptilerApiKey = "<%= process.env.MAPTILER_API_KEY %>";
+const campgrounds = {
+  type: "FeatureCollection",
+  features: <%- JSON.stringify(
+    campgrounds.map(campground => ({
+      type: "Feature",
+      geometry: campground.geometry,
+      properties: { popUpMarkup: campground?.properties?.popUpMarkup }
+    }))
+  ) %>
+};
+<%- "</script>" %>
+
+<script src="/javascripts/clusterMap.js"></script>
