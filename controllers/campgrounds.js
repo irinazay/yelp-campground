@@ -34,6 +34,7 @@ module.exports.createCampground = async (req, res, next) => {
     url: f.path,
     filename: f.filename,
   }));
+ 
   campground.author = req.user._id;
   await campground.save();
   req.flash("success", "Successfully made a new campground!");
@@ -90,6 +91,7 @@ module.exports.updateCampground = async (req, res) => {
     url: f.path,
     filename: f.filename,
   }));
+
   campground.images.push(...images);
   await campground.save();
   if (req.body.deleteImages) {
