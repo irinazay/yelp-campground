@@ -5,12 +5,12 @@
 <div class="container mt-3 mt-lg-5">
   <h1>All Campgrounds</h1>
   <div class="mt-3 mb-5">
-    <a href="/campgrounds/new">Add Campground</a>
+    <a href="/campgrounds/new">&#43; Add Campground</a>
   </div>
   <% for (let campground of campgrounds) {%>
-  <div class="card mb-3 mb-md-4 mx-md-5">
+  <div class="card mb-5 mb-md-4 mx-lg-5 campgrounds">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 campgrounds-images">
         <%if(campground.images.length) {%>
         <img
           class="img-fluid"

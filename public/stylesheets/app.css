@@ -1,3 +1,39 @@
 img {
   object-fit: cover;
+  width: 100%;
+}
+
+.campgrounds-images img {
+  max-height: 250px;
+}
+
+@media screen and (min-width: 768px) {
+  .campgrounds-images img {
+    max-height: 100%;
+  }
+
+  .campgrounds .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .campgrounds-images img {
+    max-height: 230px;
+  }
+
+  .campgrounds .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+#navbarNavAltMarkup {
+  justify-content: space-between;
 }
